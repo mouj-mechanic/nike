@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div class="nav-bar"></div>
+<div id="sec">
+    <div class="product">
+            <div class="product-image">
+                <img v-bind:src="image" alt="">
+            </div>
+        <div class="product-info">
+            <h1> {{produit}}  </h1>
+            <p :class="{barre : !stock}">Disponible</p>
+            <p v-if="solde">Soldé !</p>
+                <ul>
+                    <li v-for="spec in specs">{{spec}}</li>
+                    <br><span>Tailles disponibles:</span>
+                    <li v-for="taille in tailles">{{taille}}</li>
+                </ul>
+                <div v-for="variete in varietes" 
+                :key="variete.id" 
+                class="color-box" 
+                :style="{backgroundColor :variete.couleur}"
+                @mouseover="updateimage(variete.vimg)" >
+               
+                </div>
+                <button v-on:click="ajouteraupanier" :disabled ="!stock" :class="{disabledButton: !stock}">Ajouter au panier</button>
+                <div class="cart">
+                   <p> Panier ({{panier}})</p>
+                </div>
+                <button v-on:click="supprimerdupanier">Supprimer du panier</button>
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
